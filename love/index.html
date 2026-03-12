@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Lazyymonn ✨</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ff7eb3,#ff758c);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+.page{
+display:none;
+height:100vh;
+padding:20px;
+box-sizing:border-box;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+
+.active{
+display:flex;
+}
+
+h1{
+font-size:8vw;
+}
+
+p{
+font-size:5vw;
+}
+
+button{
+font-size:5vw;
+padding:12px 25px;
+border:none;
+border-radius:12px;
+background:white;
+color:#ff4b7d;
+margin-top:20px;
+cursor:pointer;
+}
+
+.cat{
+width:60vw;
+max-width:240px;
+border-radius:20px;
+margin:15px 0;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+.sparkle{
+position:absolute;
+font-size:16px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+#no{
+position:absolute;
+background:#ff4b7d;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body style="background-image:url('image/bg.jpg'); background-size:cover; background-position:center; color:#b30047;">
+
+<audio id="bgmusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playMusic()" 
+style="position:fixed; bottom:20px; right:20px; width:55px; height:55px; border-radius:50%; border:none; font-size:22px; background:#ff4b7d; color:white; cursor:pointer;">
+🎵
+</button>
+
+<script>
+function playMusic(){
+  document.getElementById("bgmusic").play();
+}
+</script>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+<h1>Hi Lazyymonn 😊</h1>
+<img class="cat" src="image/cat1.gif">
+<p>I made something small for you...</p>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+<h1>A Little Message 💬</h1>
+<p id="typing"></p>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="page3">
+<h1>You Are Really Nice ✨</h1>
+<img class="cat" src="image/cat2.gif">
+<p>Talking with you always feels good 😊</p>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="page4">
+<h1> 🐱💞</h1>
+<img class="cat" src="image/cat3.gif">
+<p> </p>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="page5">
+<h1>Just Wanted To Say 💖</h1>
+<p>You are very special for me.<br>You are really sweet✨</p>
+<br>
+<button id="yes">😊 I liked this</button>
+<button id="no">No</button>
+</div>
+
+<script>
+
+let page=1;
+
+function nextPage(){
+document.getElementById("page"+page).classList.remove("active");
+page++;
+document.getElementById("page"+page).classList.add("active");
+}
+
+const text="I just wanted to tell you that talking with you makes my day better. You are a really sweet person.";
+let i=0;
+
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);
+}
+}
+
+type();
+
+const noBtn=document.getElementById("no");
+
+noBtn.addEventListener("mouseover",function(){
+const x=Math.random()*window.innerWidth;
+const y=Math.random()*window.innerHeight;
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+});
+
+document.getElementById("yes").onclick=function(){
+document.body.innerHTML="<h1 style='margin-top:40vh;font-size:9vw;'>You made my day, darling 💖</h1>";
+};
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},6000);
+}
+
+function createSparkle(){
+const s=document.createElement("div");
+s.classList.add("sparkle");
+s.innerHTML="✨";
+s.style.left=Math.random()*100+"vw";
+document.body.appendChild(s);
+
+setTimeout(()=>{s.remove();},5000);
+}
+
+setInterval(createHeart,400);
+setInterval(createSparkle,200);
+
+</script>
+
+</body>
+</html>
